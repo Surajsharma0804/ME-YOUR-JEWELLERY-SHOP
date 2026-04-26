@@ -8,7 +8,7 @@ export function Story() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={ref} className="relative py-32 overflow-hidden">
+    <section ref={ref} id="story-section" className="relative py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
         <div className="relative aspect-[4/5] overflow-hidden order-2 lg:order-1">
           <motion.div style={{ y }} className="absolute inset-[-15%]">
@@ -49,9 +49,12 @@ export function Story() {
           </p>
 
           <div className="mt-10 flex items-center gap-6">
-            <button className="text-[11px] tracking-[0.3em] uppercase text-gold hover:text-champagne transition-colors border-b border-gold/40 pb-1">
+            <a
+              href="/shop"
+              className="text-[11px] tracking-[0.3em] uppercase text-gold hover:text-champagne transition-colors border-b border-gold/40 pb-1"
+            >
               Read More Stories
-            </button>
+            </a>
             <span className="text-muted-foreground text-sm">· 240+ proposals</span>
           </div>
         </motion.div>

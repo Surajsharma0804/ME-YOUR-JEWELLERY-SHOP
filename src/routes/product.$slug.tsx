@@ -57,6 +57,13 @@ function ProductPage() {
   const related = getRelated(product);
   const [zoom, setZoom] = useState(false);
   const [origin, setOrigin] = useState({ x: 50, y: 50 });
+  const [wishlisted, setWishlisted] = useState(false);
+  const [addedToBag, setAddedToBag] = useState(false);
+
+  const handleAddToBag = () => {
+    setAddedToBag(true);
+    setTimeout(() => setAddedToBag(false), 2500);
+  };
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -153,15 +160,29 @@ function ProductPage() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <button className="group relative flex-1 overflow-hidden bg-gold text-onyx px-8 py-4 text-[11px] tracking-[0.3em] uppercase font-medium hover:shadow-glow-gold transition-all">
+              <button
+                onClick={handleAddToBag}
+                className={`group relative flex-1 overflow-hidden px-8 py-4 text-[11px] tracking-[0.3em] uppercase font-medium transition-all ${
+                  addedToBag
+                    ? "bg-foreground text-background"
+                    : "bg-gold text-onyx hover:shadow-glow-gold"
+                }`}
+              >
                 <span className="relative z-10 inline-flex items-center justify-center gap-2">
                   <ShoppingBag size={14} strokeWidth={1.6} />
-                  Add to Bag
+                  {addedToBag ? "Added to Bag ✓" : "Add to Bag"}
                 </span>
               </button>
-              <button className="flex items-center justify-center gap-2 border border-gold/40 text-gold px-8 py-4 text-[11px] tracking-[0.3em] uppercase hover:bg-gold/10 transition-all">
-                <Heart size={14} strokeWidth={1.6} />
-                Wishlist
+              <button
+                onClick={() => setWishlisted((v) => !v)}
+                className={`flex items-center justify-center gap-2 border px-8 py-4 text-[11px] tracking-[0.3em] uppercase transition-all ${
+                  wishlisted
+                    ? "bg-gold/10 border-gold text-gold"
+                    : "border-gold/40 text-gold hover:bg-gold/10"
+                }`}
+              >
+                <Heart size={14} strokeWidth={1.6} fill={wishlisted ? "currentColor" : "none"} />
+                {wishlisted ? "Wishlisted ✓" : "Wishlist"}
               </button>
             </div>
 

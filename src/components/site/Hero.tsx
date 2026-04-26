@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-necklace.jpg";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -79,11 +81,19 @@ export function Hero() {
           transition={{ delay: 2.2, duration: 1 }}
           className="mt-12 flex flex-col sm:flex-row items-center gap-5"
         >
-          <button className="group relative overflow-hidden bg-gold text-onyx px-10 py-4 text-[11px] tracking-[0.3em] uppercase font-medium transition-all hover:shadow-glow-gold">
+          <button
+            onClick={() => navigate({ to: "/shop" })}
+            className="group relative overflow-hidden bg-gold text-onyx px-10 py-4 text-[11px] tracking-[0.3em] uppercase font-medium transition-all hover:shadow-glow-gold"
+          >
             <span className="relative z-10">Explore Collection</span>
             <div className="absolute inset-0 bg-champagne translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
-          <button className="text-[11px] tracking-[0.3em] uppercase text-foreground/80 hover:text-gold transition-colors border-b border-transparent hover:border-gold py-2">
+          <button
+            onClick={() => {
+              document.getElementById("story-section")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="text-[11px] tracking-[0.3em] uppercase text-foreground/80 hover:text-gold transition-colors border-b border-transparent hover:border-gold py-2"
+          >
             Watch the Story →
           </button>
         </motion.div>

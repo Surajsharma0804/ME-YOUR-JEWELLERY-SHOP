@@ -1,10 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import { useState } from "react";
 import type { Product } from "@/data/products";
 import { formatINR, metalLabels } from "@/data/products";
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
+  const [wishlisted, setWishlisted] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -43,14 +46,20 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           )}
         </div>
 
+        {/* Wishlist button */}
         <button
-          aria-label="Add to wishlist"
+          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           onClick={(e) => {
             e.preventDefault();
+            setWishlisted((v) => !v);
           }}
-          className="absolute top-4 right-4 h-9 w-9 grid place-items-center rounded-full bg-onyx/60 backdrop-blur-md text-foreground/80 hover:text-gold hover:bg-onyx/90 transition-all opacity-0 group-hover:opacity-100"
+          className={`absolute top-4 right-4 h-9 w-9 grid place-items-center rounded-full backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 ${
+            wishlisted
+              ? "bg-gold text-onyx"
+              : "bg-onyx/60 text-foreground/80 hover:text-gold hover:bg-onyx/90"
+          }`}
         >
-          <Heart size={15} strokeWidth={1.4} />
+          <Heart size={15} strokeWidth={1.4} fill={wishlisted ? "currentColor" : "none"} />
         </button>
 
         <div className="absolute inset-x-0 bottom-0 p-5">
