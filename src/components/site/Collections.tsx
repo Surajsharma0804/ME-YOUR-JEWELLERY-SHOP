@@ -9,7 +9,6 @@ const items = [
     title: "Vows in Gold",
     desc: "Heirloom-worthy pieces designed for the day you say forever.",
     cta: "Discover Bridal",
-    href: "/collections/bridal",
   },
   {
     img: everyday,
@@ -17,7 +16,6 @@ const items = [
     title: "Quiet Luxury",
     desc: "Effortless gold for the rituals that make a life beautiful.",
     cta: "Shop Everyday",
-    href: "/collections/gifts",
   },
 ];
 
@@ -42,7 +40,7 @@ export function Collections() {
           {items.map((item, i) => (
             <motion.a
               key={item.title}
-              href={item.href}
+              href="#"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}

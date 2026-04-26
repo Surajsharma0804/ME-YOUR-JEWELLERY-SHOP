@@ -9,19 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StoryRouteImport } from './routes/story'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
-import { Route as MaisonSlugRouteImport } from './routes/maison.$slug'
-import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
-import { Route as CareSlugRouteImport } from './routes/care.$slug'
 
-const StoryRoute = StoryRouteImport.update({
-  id: '/story',
-  path: '/story',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -37,99 +28,39 @@ const ProductSlugRoute = ProductSlugRouteImport.update({
   path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MaisonSlugRoute = MaisonSlugRouteImport.update({
-  id: '/maison/$slug',
-  path: '/maison/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CollectionsCategoryRoute = CollectionsCategoryRouteImport.update({
-  id: '/collections/$category',
-  path: '/collections/$category',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareSlugRoute = CareSlugRouteImport.update({
-  id: '/care/$slug',
-  path: '/care/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
-  '/story': typeof StoryRoute
-  '/care/$slug': typeof CareSlugRoute
-  '/collections/$category': typeof CollectionsCategoryRoute
-  '/maison/$slug': typeof MaisonSlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
-  '/story': typeof StoryRoute
-  '/care/$slug': typeof CareSlugRoute
-  '/collections/$category': typeof CollectionsCategoryRoute
-  '/maison/$slug': typeof MaisonSlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
-  '/story': typeof StoryRoute
-  '/care/$slug': typeof CareSlugRoute
-  '/collections/$category': typeof CollectionsCategoryRoute
-  '/maison/$slug': typeof MaisonSlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/shop'
-    | '/story'
-    | '/care/$slug'
-    | '/collections/$category'
-    | '/maison/$slug'
-    | '/product/$slug'
+  fullPaths: '/' | '/shop' | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/shop'
-    | '/story'
-    | '/care/$slug'
-    | '/collections/$category'
-    | '/maison/$slug'
-    | '/product/$slug'
-  id:
-    | '__root__'
-    | '/'
-    | '/shop'
-    | '/story'
-    | '/care/$slug'
-    | '/collections/$category'
-    | '/maison/$slug'
-    | '/product/$slug'
+  to: '/' | '/shop' | '/product/$slug'
+  id: '__root__' | '/' | '/shop' | '/product/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ShopRoute: typeof ShopRoute
-  StoryRoute: typeof StoryRoute
-  CareSlugRoute: typeof CareSlugRoute
-  CollectionsCategoryRoute: typeof CollectionsCategoryRoute
-  MaisonSlugRoute: typeof MaisonSlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/story': {
-      id: '/story'
-      path: '/story'
-      fullPath: '/story'
-      preLoaderRoute: typeof StoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -151,37 +82,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/maison/$slug': {
-      id: '/maison/$slug'
-      path: '/maison/$slug'
-      fullPath: '/maison/$slug'
-      preLoaderRoute: typeof MaisonSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/collections/$category': {
-      id: '/collections/$category'
-      path: '/collections/$category'
-      fullPath: '/collections/$category'
-      preLoaderRoute: typeof CollectionsCategoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/care/$slug': {
-      id: '/care/$slug'
-      path: '/care/$slug'
-      fullPath: '/care/$slug'
-      preLoaderRoute: typeof CareSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ShopRoute: ShopRoute,
-  StoryRoute: StoryRoute,
-  CareSlugRoute: CareSlugRoute,
-  CollectionsCategoryRoute: CollectionsCategoryRoute,
-  MaisonSlugRoute: MaisonSlugRoute,
   ProductSlugRoute: ProductSlugRoute,
 }
 export const routeTree = rootRouteImport

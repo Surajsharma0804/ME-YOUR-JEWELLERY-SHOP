@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "@tanstack/react-router";
 import couple from "@/assets/story-couple.jpg";
 
 export function Story() {
@@ -42,20 +41,17 @@ export function Story() {
 
           <p className="text-foreground/70 leading-relaxed text-lg font-display italic">
             “He didn’t kneel in some grand ballroom. He held my hand on a quiet rooftop, the city
-            humming below, and slipped a ring onto my finger that felt like it had been waiting for
-            me forever.”
+            humming below, and slipped a ring onto my finger that felt like it had been waiting
+            for me forever.”
           </p>
           <p className="mt-6 text-sm tracking-[0.2em] uppercase text-muted-foreground">
             — Aanya &amp; Vikram · Mumbai
           </p>
 
           <div className="mt-10 flex items-center gap-6">
-            <Link
-              to="/story"
-              className="text-[11px] tracking-[0.3em] uppercase text-gold hover:text-champagne transition-colors border-b border-gold/40 pb-1"
-            >
+            <button className="text-[11px] tracking-[0.3em] uppercase text-gold hover:text-champagne transition-colors border-b border-gold/40 pb-1">
               Read More Stories
-            </Link>
+            </button>
             <span className="text-muted-foreground text-sm">· 240+ proposals</span>
           </div>
         </motion.div>

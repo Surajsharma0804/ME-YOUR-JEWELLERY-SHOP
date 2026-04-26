@@ -46,10 +46,10 @@
 
   /* Luxury palette */
   --onyx: oklch(0.12 0.005 60);
-  --gold: oklch(0.78 0.13 85); /* royal gold #D4AF37 */
+  --gold: oklch(0.78 0.13 85);          /* royal gold #D4AF37 */
   --gold-soft: oklch(0.85 0.09 85);
-  --champagne: oklch(0.93 0.045 80); /* #F7E7CE */
-  --rose-gold: oklch(0.65 0.09 30); /* #B76E79 */
+  --champagne: oklch(0.93 0.045 80);     /* #F7E7CE */
+  --rose-gold: oklch(0.65 0.09 30);      /* #B76E79 */
   --ivory: oklch(0.98 0.005 80);
 
   /* Dark theme always */
@@ -74,23 +74,9 @@
   --ring: oklch(0.78 0.13 85 / 60%);
 
   /* Gradients & shadows */
-  --gradient-gold: linear-gradient(
-    135deg,
-    oklch(0.85 0.11 85) 0%,
-    oklch(0.7 0.13 75) 50%,
-    oklch(0.85 0.11 85) 100%
-  );
-  --gradient-radial-glow: radial-gradient(
-    ellipse at center,
-    oklch(0.78 0.13 85 / 0.18) 0%,
-    transparent 60%
-  );
-  --gradient-overlay: linear-gradient(
-    180deg,
-    oklch(0.09 0.005 60 / 0.2) 0%,
-    oklch(0.09 0.005 60 / 0.6) 60%,
-    oklch(0.09 0.005 60 / 0.95) 100%
-  );
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.11 85) 0%, oklch(0.7 0.13 75) 50%, oklch(0.85 0.11 85) 100%);
+  --gradient-radial-glow: radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.18) 0%, transparent 60%);
+  --gradient-overlay: linear-gradient(180deg, oklch(0.09 0.005 60 / 0.2) 0%, oklch(0.09 0.005 60 / 0.6) 60%, oklch(0.09 0.005 60 / 0.95) 100%);
   --shadow-luxe: 0 30px 80px -20px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(0.78 0.13 85 / 0.1);
   --shadow-glow-gold: 0 0 60px oklch(0.78 0.13 85 / 0.35);
 
@@ -176,31 +162,20 @@
   }
 
   @keyframes shimmer {
-    100% {
-      transform: translateX(100%);
-    }
+    100% { transform: translateX(100%); }
   }
 
   @keyframes float-slow {
-    0%,
-    100% {
-      transform: translateY(0) rotate(0);
-    }
-    50% {
-      transform: translateY(-12px) rotate(0.5deg);
-    }
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-12px) rotate(0.5deg); }
   }
   .animate-float {
     animation: float-slow 8s ease-in-out infinite;
   }
 
   @keyframes ken-burns {
-    0% {
-      transform: scale(1.05) translate(0, 0);
-    }
-    100% {
-      transform: scale(1.18) translate(-1.5%, -1%);
-    }
+    0% { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.18) translate(-1.5%, -1%); }
   }
   .animate-ken-burns {
     animation: ken-burns 18s ease-out forwards;
@@ -214,10 +189,6 @@
     transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateY(-6px);
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    scrollbar-width: none;
-  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
 }

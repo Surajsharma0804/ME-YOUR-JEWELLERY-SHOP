@@ -1,6 +1,4 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { siteConfig } from "@/config/site";
-import { buildMeta } from "@/lib/seo";
 
 import appCss from "../styles.css?url";
 
@@ -27,40 +25,28 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => {
-    const socialImageUrl = `${siteConfig.seo.siteUrl}${siteConfig.seo.socialImagePath}`;
-
-    return {
-      meta: [
-        { charSet: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        ...buildMeta({
-          title: siteConfig.brand.name,
-          description: siteConfig.brand.description,
-          ogTitle: siteConfig.brand.name,
-          ogDescription: siteConfig.brand.shortDescription,
-          image: socialImageUrl,
-        }),
-        { name: "author", content: siteConfig.brand.name },
-        { name: "theme-color", content: "#121110" },
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: siteConfig.seo.siteUrl },
-        { property: "og:image:alt", content: "ME & YOURS Maison fine jewellery" },
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:image:alt", content: "ME & YOURS Maison fine jewellery" },
-      ],
-      links: [
-        { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: siteConfig.seo.siteUrl },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap",
-        },
-      ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "ME & YOURS — Fine Jewellery" },
+      { name: "description", content: "ME & YOURS — Luxury fine jewellery, hand-crafted for the moments that matter." },
+      { name: "author", content: "Suraj Kumar" },
+      { property: "og:title", content: "ME & YOURS — Fine Jewellery" },
+      { property: "og:description", content: "ME & YOURS — Luxury fine jewellery, hand-crafted for the moments that matter." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap",
+      },
+    ],
+  }),
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

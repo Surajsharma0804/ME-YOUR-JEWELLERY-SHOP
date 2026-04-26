@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SlidersHorizontal, X, ChevronDown } from "lucide-react";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
 import { ProductCard } from "@/components/site/ProductCard";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { buildMeta } from "@/lib/seo";
 import {
   products,
   type Category,
@@ -24,12 +24,15 @@ const PRICE_MAX = 800000;
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
-    meta: buildMeta({
-      title: "Shop Fine Jewellery — ME & YOURS",
-      description:
-        "Browse hand-crafted rings, earrings, necklaces and bangles in 18k & 22k gold. Filter by metal, karat, occasion and price.",
-      ogTitle: "Shop — ME & YOURS Fine Jewellery",
-    }),
+    meta: [
+      { title: "Shop Fine Jewellery — ME & YOURS" },
+      {
+        name: "description",
+        content:
+          "Browse hand-crafted rings, earrings, necklaces and bangles in 18k & 22k gold. Filter by metal, karat, occasion and price.",
+      },
+      { property: "og:title", content: "Shop — ME & YOURS Fine Jewellery" },
+    ],
   }),
   component: ShopPage,
 });
@@ -69,7 +72,9 @@ function ShopPage() {
         list = [...list].sort((a, b) => Number(!!b.isNew) - Number(!!a.isNew));
         break;
       default:
-        list = [...list].sort((a, b) => Number(!!b.bestseller) - Number(!!a.bestseller));
+        list = [...list].sort(
+          (a, b) => Number(!!b.bestseller) - Number(!!a.bestseller)
+        );
     }
     return list;
   }, [activeCats, activeMetals, activeKarats, maxPrice, sort]);
@@ -85,7 +90,9 @@ function ShopPage() {
   };
 
   return (
-    <SiteLayout>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navbar />
+
       {/* Header */}
       <section className="relative pt-40 pb-16 px-6 lg:px-12">
         <div className="mx-auto max-w-7xl">
@@ -95,9 +102,7 @@ function ShopPage() {
             transition={{ duration: 1 }}
           >
             <nav className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
-              <Link to="/" className="hover:text-gold transition-colors">
-                Home
-              </Link>
+              <Link to="/" className="hover:text-gold transition-colors">Home</Link>
               <span className="mx-3 text-gold/40">/</span>
               <span className="text-gold">Shop</span>
             </nav>
@@ -105,8 +110,7 @@ function ShopPage() {
               The <span className="italic text-gradient-gold">Maison</span>
             </h1>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              {filtered.length} pieces, hand-finished and hallmarked. Filter by mood, metal, or
-              moment.
+              {filtered.length} pieces, hand-finished and hallmarked. Filter by mood, metal, or moment.
             </p>
           </motion.div>
         </div>
@@ -133,8 +137,6 @@ function ShopPage() {
 
           <div className="relative">
             <select
-              aria-label="Sort products"
-              title="Sort products"
               value={sort}
               onChange={(e) => setSort(e.target.value as Sort)}
               className="appearance-none bg-transparent border border-border pl-4 pr-10 py-2 text-[11px] tracking-[0.25em] uppercase text-foreground hover:border-gold focus:border-gold focus:outline-none transition-colors"
@@ -244,7 +246,9 @@ function ShopPage() {
           </>
         )}
       </AnimatePresence>
-    </SiteLayout>
+
+      <Footer />
+    </div>
   );
 }
 
@@ -314,11 +318,11 @@ function FilterPanel({
           <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
             Price
           </span>
-          <span className="text-xs text-gold">up to ₹{(maxPrice / 1000).toFixed(0)}k</span>
+          <span className="text-xs text-gold">
+            up to ₹{(maxPrice / 1000).toFixed(0)}k
+          </span>
         </div>
         <input
-          aria-label="Maximum price"
-          title="Maximum price"
           type="range"
           min={20000}
           max={PRICE_MAX}

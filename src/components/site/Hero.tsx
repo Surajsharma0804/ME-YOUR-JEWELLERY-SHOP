@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-necklace.jpg";
 
 export function Hero() {
@@ -53,7 +52,7 @@ export function Hero() {
         >
           <span className="text-foreground">me</span>
           <span className="text-gold italic font-light"> &amp; </span>
-          <span className="text-foreground">yours</span>
+          <span className="text-foreground">you</span>
         </motion.h1>
 
         <motion.div
@@ -80,22 +79,16 @@ export function Hero() {
           transition={{ delay: 2.2, duration: 1 }}
           className="mt-12 flex flex-col sm:flex-row items-center gap-5"
         >
-          <Link
-            to="/shop"
-            className="group relative overflow-hidden bg-gold text-onyx px-10 py-4 text-[11px] tracking-[0.3em] uppercase font-medium transition-all hover:shadow-glow-gold"
-          >
+          <button className="group relative overflow-hidden bg-gold text-onyx px-10 py-4 text-[11px] tracking-[0.3em] uppercase font-medium transition-all hover:shadow-glow-gold">
             <span className="relative z-10">Explore Collection</span>
             <div className="absolute inset-0 bg-champagne translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             <span className="absolute inset-0 z-10 flex items-center justify-center text-onyx translate-y-full group-hover:translate-y-0 transition-transform duration-500">
               Explore Collection
             </span>
-          </Link>
-          <Link
-            to="/story"
-            className="text-[11px] tracking-[0.3em] uppercase text-foreground/80 hover:text-gold transition-colors border-b border-transparent hover:border-gold py-2"
-          >
+          </button>
+          <button className="text-[11px] tracking-[0.3em] uppercase text-foreground/80 hover:text-gold transition-colors border-b border-transparent hover:border-gold py-2">
             Watch the Story →
-          </Link>
+          </button>
         </motion.div>
       </motion.div>
 

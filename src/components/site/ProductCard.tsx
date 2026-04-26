@@ -64,9 +64,13 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
         <h3 className="font-display text-2xl leading-tight text-foreground group-hover:text-gold transition-colors">
           {product.name}
         </h3>
-        <p className="text-xs italic font-display text-muted-foreground mt-1">{product.tagline}</p>
+        <p className="text-xs italic font-display text-muted-foreground mt-1">
+          {product.tagline}
+        </p>
         <div className="mt-3 flex items-baseline gap-3">
-          <span className="text-sm tracking-wide text-foreground">{formatINR(product.price)}</span>
+          <span className="text-sm tracking-wide text-foreground">
+            {formatINR(product.price)}
+          </span>
           {product.originalPrice && (
             <span className="text-xs text-muted-foreground line-through">
               {formatINR(product.originalPrice)}

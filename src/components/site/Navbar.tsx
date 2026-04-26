@@ -1,10 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Search, Heart, ShoppingBag, User, Menu } from "lucide-react";
+import { Search, ShoppingBag, User, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { siteConfig } from "@/config/site";
 
-const links = siteConfig.navigation;
+const links = [
+  { label: "Rings", to: "/shop" },
+  { label: "Earrings", to: "/shop" },
+  { label: "Necklaces", to: "/shop" },
+  { label: "Bangles", to: "/shop" },
+  { label: "Shop All", to: "/shop" },
+  { label: "Story", to: "/" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +29,9 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "backdrop-blur-xl bg-background/80 border-b border-border" : "bg-transparent"
+        scrolled
+          ? "backdrop-blur-xl bg-background/80 border-b border-border"
+          : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-12">
@@ -37,23 +45,23 @@ export function Navbar() {
 
         <Link to="/" className="flex flex-col items-center group">
           <span className="font-display text-2xl tracking-[0.3em] text-gold transition-all group-hover:tracking-[0.4em]">
-            {siteConfig.brand.logoText}
+            ME &amp; YOURS
           </span>
           <span className="text-[9px] tracking-[0.4em] text-muted-foreground mt-0.5">
-            {siteConfig.brand.tagline}
+            FINE JEWELLERY
           </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
           {links.map((l) => (
-            <a
+            <Link
               key={l.label}
-              href={l.href}
+              to={l.to}
               className="relative text-[11px] tracking-[0.25em] uppercase text-foreground/80 hover:text-gold transition-colors group"
             >
               {l.label}
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -61,16 +69,10 @@ export function Navbar() {
           <button className="hidden sm:block hover:text-gold transition-colors" aria-label="Search">
             <Search size={18} strokeWidth={1.2} />
           </button>
-          <button
-            className="hidden sm:block hover:text-gold transition-colors"
-            aria-label="Account"
-          >
+          <button className="hidden sm:block hover:text-gold transition-colors" aria-label="Account">
             <User size={18} strokeWidth={1.2} />
           </button>
-          <button className="hover:text-gold transition-colors" aria-label="Wishlist">
-            <Heart size={18} strokeWidth={1.2} />
-          </button>
-          <button className="relative hover:text-gold transition-colors" aria-label="Cart">
+          <button className="hover:text-gold transition-colors" aria-label="Cart">
             <ShoppingBag size={18} strokeWidth={1.2} />
             <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gold text-onyx text-[9px] font-medium flex items-center justify-center">
               2
@@ -89,14 +91,14 @@ export function Navbar() {
           >
             <div className="flex flex-col px-6 py-4 gap-4">
               {links.map((l) => (
-                <a
+                <Link
                   key={l.label}
-                  href={l.href}
+                  to={l.to}
                   onClick={() => setOpen(false)}
                   className="text-sm tracking-[0.2em] uppercase text-foreground/80 hover:text-gold"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.nav>

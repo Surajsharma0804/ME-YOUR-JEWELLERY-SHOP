@@ -183,7 +183,8 @@ export const formatINR = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n);
 
-export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
+export const getProduct = (slug: string) =>
+  products.find((p) => p.slug === slug);
 
 export const getRelated = (p: Product, n = 4) =>
   products.filter((x) => x.id !== p.id && x.category === p.category).slice(0, n);
