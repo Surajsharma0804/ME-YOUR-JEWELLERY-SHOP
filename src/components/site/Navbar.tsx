@@ -9,7 +9,7 @@ const links = [
   { label: "Necklaces", to: "/shop" },
   { label: "Bangles", to: "/shop" },
   { label: "Shop All", to: "/shop" },
-  { label: "Story", to: "/" },
+  { label: "Our Story", to: "/" },
 ];
 
 export function Navbar() {
@@ -72,7 +72,7 @@ export function Navbar() {
           <button className="hidden sm:block hover:text-gold transition-colors" aria-label="Account">
             <User size={18} strokeWidth={1.2} />
           </button>
-          <button className="hover:text-gold transition-colors" aria-label="Cart">
+          <button className="relative hover:text-gold transition-colors" aria-label="Cart">
             <ShoppingBag size={18} strokeWidth={1.2} />
             <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gold text-onyx text-[9px] font-medium flex items-center justify-center">
               2
